@@ -63,6 +63,11 @@ int main() {
   // Take this expression. Note that 'a' is a lvalue, since it's a variable that
   // refers to a specific space in memory (where 'a' is stored). 10 is a rvalue.
   int a = 10;
+  int &&b = std::move(a);
+  int c = std::move(a);
+  a = 12;
+  std::cout << b << std::endl;
+  std::cout << c << std::endl;
 
   // Let's see a basic example of moving data from one lvalue to another.
   // We define a vector of integers here.
@@ -93,7 +98,7 @@ int main() {
   // It would be unwise to try to do anything with int_array2 here. Uncomment
   // the code to try it out! (On my machine, this segfaults...) NOTE: THIS MIGHT
   // WORK FOR YOU. THIS DOES NOT MEAN THAT THIS IS WISE TO DO! 
-  // std::cout << int_array2[1] << std::endl;
+  /*std::cout << int_array2[1] << std::endl;*/
 
   // If we don't move the lvalue in the caller context to any lvalue in the
   // callee context, then effectively the function treats the rvalue reference

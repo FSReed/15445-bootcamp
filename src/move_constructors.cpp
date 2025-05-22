@@ -41,6 +41,9 @@ public:
   // Keep in mind that this constructor takes in a std::vector<std::string>
   // rvalue. This makes the constructor more efficient because it doesn't deep
   // copy the vector instance when constructing the person object.
+
+  // Use rvalue reference instead of lvalue reference (&),
+  // otherwise, the lvalue may be moved silently and the caller won't know about it.
   Person(uint32_t age, std::vector<std::string> &&nicknames)
       : age_(age), nicknames_(std::move(nicknames)), valid_(true) {}
 
@@ -55,7 +58,7 @@ public:
   // them, but for other types, such as strings and object types, one should
   // move the class instance unless copying is necessary.
   Person(Person &&person)
-      : age_(person.age_), nicknames_(std::move(person.nicknames_)),
+      : age_(std::move(person.age_)), nicknames_(std::move(person.nicknames_)),
         valid_(true) {
     std::cout << "Calling the move constructor for class Person.\n";
     // The moved object's validity tag is set to false.
@@ -139,12 +142,12 @@ int main() {
   // default constructor, and the second line invokes the copy assignment operator
   // to re-initialize andy3 with the deep-copied contents of andy2. Try uncommenting
   // these lines of code to see the resulting compiler errors.
-  // Person andy3;
-  // andy3 = andy2;
+  /*Person andy3;*/
+  /*andy3 = andy2;*/
 
   // Because the copy constructor is deleted, this code will not compile. Try
   // uncommenting this code to see the resulting compiler errors.
-  // Person andy4(andy2);
+  /*Person andy4(andy2);*/
 
   return 0;
 }

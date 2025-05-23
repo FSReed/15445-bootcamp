@@ -59,13 +59,13 @@ class DLLIterator {
     DLLIterator(Node* head) 
       : curr_(head) {}
 
-    // Implementing a prefix increment operator (++iter).
+    // **Implementing a prefix increment operator (++iter).**
     DLLIterator& operator++() {
       curr_ = curr_->next_;
       return *this;
     }
 
-    // Implementing a postfix increment operator (iter++). The difference
+    // **Implementing a postfix increment operator (iter++).** The difference
     // between a prefix and postfix increment operator is the return value
     // of the operator. The prefix operator returns the result of the
     // increment, while the postfix operator returns the iterator before

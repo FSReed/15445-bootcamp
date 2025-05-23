@@ -134,6 +134,7 @@ int main() {
   // a's destructor will note that the ptr_ it is managing has been set to 
   // nullptr, and will do nothing, while b's destructor should free the memory
   // it is managing.
+  IntPtrManager c = std::move(b);
 
   return 0;
 }

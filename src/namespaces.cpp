@@ -97,6 +97,9 @@ namespace C {
   }
 }
 
+/*void eggs(int num) {*/
+/*  std::cout << "Hello! " << num << std::endl;*/
+/*}*/
 
 // One of the uses of the using keyword is to bring the current namespace into
 // the current scope. This statement will bring namespace B into the current
@@ -105,8 +108,8 @@ namespace C {
 // by B::foo and by foo.
 using namespace B;
 
-// Another use of the using keyword is to bring certain members of a namespace
-// into the current scope. This statement will bring C::eggs into the current
+// **Another use of the using keyword is to bring certain members of a namespace
+// into the current scope.** This statement will bring C::eggs into the current
 // scope. This means that eggs can be referred to as eggs anywhere below this
 // line of code.
 using C::eggs;

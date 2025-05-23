@@ -56,7 +56,7 @@ class FooSpecial {
     T var_;
 };
 
-// Specialized templated class, specialized on the float type.
+// **Specialized templated class, specialized on the float type.**
 template<>
 class FooSpecial<float> {
   public:
@@ -68,7 +68,7 @@ class FooSpecial<float> {
     float var_;
 };
 
-// Template parameters don't have to be types. They can also be values!
+// **Template parameters don't have to be types. They can also be values!**
 template<int T>
 class Bar {
   public: 

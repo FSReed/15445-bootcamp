@@ -14,8 +14,8 @@
 
 // Here is a basic templated function that adds two numbers.
 // Syntax note: You will see code with both template<class T> and
-// template<typename T>. Although these statements are equivalent, there are
-// differences between the class and typename keywords. This blog article covers
+// template<typename T>. Although these statements are equivalent, **there are
+// differences between the class and typename keywords**. This blog article covers
 // this difference, but you won't need to know this for the class:
 // https://mariusbancila.ro/blog/2021/03/15/typename-or-class/
 template <typename T> T add(T a, T b) { return a + b; }

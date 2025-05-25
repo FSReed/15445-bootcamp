@@ -20,7 +20,7 @@
 #include <unordered_map>
 // Includes the C++ string library.
 #include <string>
-// Includes std::make_pair.
+// **Includes std::make_pair.**
 #include <utility>
 
 int main() {
@@ -40,6 +40,7 @@ int main() {
   // std::make_pair with 2 arguments. std::make_pair is defined in the header
   // <utility>, and constructs an instance of the generic pair type.
   map.insert(std::make_pair("jignesh", 445));
+  map.insert(std::make_pair("db", 15));
 
   // You can also insert multiple elements at a time by passing in an
   // initializer list of pairs.

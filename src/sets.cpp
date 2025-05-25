@@ -92,8 +92,8 @@ int main() {
     std::cout << "Elements 9 and 10 are not in the set.\n";
   }
 
-  // We can iterate through the set elements via the set iterator. You cannot
-  // iterate through a set via indexes of any kind.
+  // We can iterate through the set elements via the set iterator. **You cannot
+  // iterate through a set via indexes of any kind.**
   std::cout << "Printing the elements of the iterator:\n";
   for (std::set<int>::iterator it = int_set.begin(); it != int_set.end();
        ++it) {

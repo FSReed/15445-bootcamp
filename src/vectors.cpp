@@ -74,6 +74,10 @@ int main() {
   // moves it to the memory in the vector. We can see this here where we add two
   // Point objects to our vector.
   std::cout << "Appending to the point_vector via push_back:\n";
+  // The implementation of push_back:
+      /*push_back(value_type&& __x)*/
+      /*{ emplace_back(std::move(__x)); }*/
+  // Give a rvalue reference to emplace_back
   point_vector.push_back(Point(35, 36));
   std::cout << "Appending to the point_vector via emplace_back:\n";
   point_vector.emplace_back(37, 38);
@@ -133,10 +137,10 @@ int main() {
                "from index 1 through the end\n";
   print_int_vector(int_vector);
 
-  // We can also erase values via filtering, i.e. erasing values if they meet a
+  // **We can also erase values via filtering, i.e. erasing values if they meet a
   // conditional. We can do so by importing another library, the algorithm
   // library, which gives us the std::remove_if function, which removes all
-  // elements meeting a conditional from an iterator range. This does seem
+  // elements meeting a conditional from an iterator range.** This does seem
   // awfully complicated, but the code can be summarized as follows.
   // std::remove_if takes in 3 arguments. Two of those arguments indicate the
   // range of elements that we should filter. These are given by
@@ -148,20 +152,21 @@ int main() {
   // https://en.cppreference.com/w/cpp/utility/functional/function), that takes
   // in one argument, which is supposed to represent each element in the vector
   // that we are filtering. This function should return a boolean that is true
-  // if the element is to be filtered out and false otherwise. std::remove_if
+  // if the element is to be filtered out and false otherwise. **std::remove_if
   // returns an iterator pointing to the first element in the container that
-  // should be eliminated. Keep in mind that it swaps elements as needed,
+  // should be eliminated.** Keep in mind that it swaps elements as needed,
   // partitioning the elements that need to be deleted after the iterator value
   // it returns. When erase is called, it deletes only the elements that
   // remove_if has partitioned away to be deleted, up to the end of the vector.
   // This outer erase takes a range argument, as we saw in the previous example.
   point_vector.erase(
       std::remove_if(point_vector.begin(), point_vector.end(),
-                     [](const Point &point) { return point.GetX() == 37; }),
+                     [](const Point &point) { return point.GetX() == 37 || point.GetX() == 39; }),
       point_vector.end());
 
   // After calling remove here, we should see that three elements remain in our
   // point vector. Only the one with value (37, 445) is deleted.
+  // Now only 2 nodes left, as I modified the lambda in point_vector.erase(...)
   std::cout << "Printing the point_vector after (37, 445) is erased:\n";
   for (const Point &item : point_vector) {
     item.PrintPoint();

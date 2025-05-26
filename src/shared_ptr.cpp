@@ -133,8 +133,8 @@ int main() {
   // this case, the function contains its own copy of a shared pointer, which
   // destroys itself after the function is finished. In this example, before s2
   // is passed to the function by value, its use count is 1. While it is in the
-  // function, its use count is 2, because there is another copy of s2's data in
-  // the shared pointer instance in the function. After the function goes out of
+  // function, its use count is 2, **because there is another copy of s2's data in
+  // the shared pointer instance in the function**. After the function goes out of
   // scope, this object in the function is destroyed, and the use count returns
   // to 1.
   std::cout

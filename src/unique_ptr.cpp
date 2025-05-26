@@ -13,13 +13,13 @@
 // std::shared_ptr handle memory allocation and deallocation automatically, and
 // contain raw pointers under the hood. In other words, they are wrapper classes
 // over raw pointers. In this file, we'll talk about std::unique_ptr.
-// std::unique_ptr is a type of smart pointer that retains sole ownership of an
-// object This means that no two instances of std::unique_ptr can manage the
+// **std::unique_ptr is a type of smart pointer that retains sole ownership of an
+// object**. This means that no two instances of std::unique_ptr can manage the
 // same object.
 
 // Includes std::cout (printing) for demo purposes.
 #include <iostream>
-// Includes std::unique_ptr functionality.
+// **Includes std::unique_ptr functionality.**
 #include <memory>
 // String library for printing help for demo purposes.
 #include <string>
@@ -99,6 +99,11 @@ int main() {
   // Now, let's print the x value of u4 to confirm that the change occured, but
   // the ownership of the Point instance has been retained to u4.
   std::cout << "Pointer u4's x value is " << u4->GetX() << std::endl;
+  Point point{6, 824};
+  u1 = std::make_unique<Point>(point);
+  u3 = std::make_unique<Point>(point);
+  std::cout << "Pointer u1 is " << (u1 ? "not empty" : "empty") << std::endl;
+  std::cout << "Pointer u3 is " << (u3 ? "not empty" : "empty") << std::endl;
 
   return 0;
 }

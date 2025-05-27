@@ -89,6 +89,10 @@ void not_take_ownership(int *p) {
   // Never `delete p` here!!
 }
 
+void another_try(std::unique_ptr<int>& p) {
+  // Do something...
+}
+
 int main() {
   /* ======================================================================
      === Part 1: Common errors you come across in bustub ==================
@@ -182,6 +186,7 @@ int main() {
   // Ex: pass down one element from a thread to another.
   // Please try to uncomment the following code!
   // Pointer<int>& dumb_pointer = dumb_generator(2); // Something will go horribly wrong, but what?
+  // Answer: This will go horribly wrong because the temporary variable created in dumb_generator() will be freed, making the result invalid.
   // dumb_pointer.set_val(10); // Uh oh...
 
   // We need a way to "move the ownership". Please check move assign operator/constructor in Pointer class.
@@ -225,8 +230,10 @@ int main() {
   // std::unique_ptr<int> up1{ rp };
   // std::unique_ptr<int> up2{ rp }; // WRONG!
 
-  // 2. Ways to pass std::unique_ptr to a function.
+  // 2. **Ways to pass std::unique_ptr to a function.**
   not_take_ownership(up.get());
+  another_try(up);
+  if (up) std::cout << "Alive!" << std::endl;
   // Unique_ptr `up` is still valid here!
   take_ownership(std::move(up));
   // Unique_ptr `up` cannot be used here!
@@ -245,7 +252,7 @@ int main() {
   // 1. Always make a copy of an existing std::shared_ptr.
   int *rp = new int;
   std::shared_ptr<int> sp3{rp};
-  // std::shared_ptr<int> sp4{ rp }; // WRONG!
+  // std::shared_ptr<int> sp4{ rp }; // WRONG! This would cause a double-free
   std::shared_ptr<int> sp4{sp3};
   // 2. Always use std::make_shared() to create a shared_ptr.
 

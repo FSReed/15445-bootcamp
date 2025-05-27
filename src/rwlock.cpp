@@ -29,8 +29,8 @@
 #include <thread>
 
 // Defining a global count variable and a shared mutex to be used by all threads.
-// The std::shared_mutex is a mutex that allows for shared locking, as well as
-// exclusive locking.
+// **The std::shared_mutex is a mutex that allows for shared locking, as well as
+// exclusive locking.**
 int count = 0;
 std::shared_mutex m;
 
@@ -70,4 +70,5 @@ int main() {
   t6.join();
 
   return 0;
+  // done
 }

@@ -24,10 +24,12 @@ std::mutex m;
 // by 1, atomically.
 void add_count() {
   // Acquire the lock before accessing count, the shared resource.
-  m.lock();
-  count += 1;
-  // Release the lock after accessing count, the shared resource.
-  m.unlock();
+  for (int i = 0; i < 10000; i++) {
+    /*m.lock();*/
+    count += 1;
+    // Release the lock after accessing count, the shared resource.
+    /*m.unlock();*/
+  }
 }
 
 // The main method constructs two thread objects and has them both run the

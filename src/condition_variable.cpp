@@ -34,8 +34,8 @@
 int count = 0;
 std::mutex m;
 
-// This is the syntax for declaring and default initializing a condition 
-// variable.
+// **This is the syntax for declaring and default initializing a condition 
+// variable.**
 std::condition_variable cv;
 
 // In this function, a thread increments the count variable by
@@ -59,7 +59,10 @@ void add_count_and_notify() {
 // or copy-assignable.
 void waiter_thread() {
   std::unique_lock lk(m);
-  cv.wait(lk, []{return count == 2;});
+  // The lambda is crucial. Because the waiter thread may spuriously wake up,
+  // even if no notify_one() or notyfy_all() is called!
+  // Change `return count` == 2 to `return true`, you'll see the output can be 0 or 1
+  cv.wait(lk, []{ return count == 2;});
 
   std::cout << "Printing count: " << count << std::endl;
 }

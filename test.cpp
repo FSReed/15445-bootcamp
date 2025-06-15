@@ -1,6 +1,5 @@
 #include <memory>
 #include <iostream>
-#include <ostream>
 
 class Ball {
   public:
